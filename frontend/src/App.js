@@ -39,23 +39,23 @@ function App() {
           <div class="dropdown" style={{marginLeft: "40%"}}>
             <button class="button-4">Категории Новостей</button>
             <div class="dropdown-content">
-              <button href="#" onClick={() => {
+              <button className="button-4" onClick={() => {
                 getArticles(0);
                 setID(0);
               }}>Все Новости</button>
-              <button href="#" onClick={() => {
+              <button className="button-4" onClick={() => {
                 getArticles(2);
                 setID(2);
               }}>Жизнь</button>
-              <button href="#" onClick={() => {
+              <button className="button-4" onClick={() => {
                 getArticles(1);
                 setID(1);
               }}>Спорт</button>
-              <button href="#" onClick={() => {
+              <button className="button-4" onClick={() => {
                 getArticles(4);
                 setID(4);
               }}>Путешествия</button>
-              <button href="#" onClick={() => {
+              <button className="button-4" onClick={() => {
                 getArticles(3);
                 setID(3);
               }}>Образование</button>
