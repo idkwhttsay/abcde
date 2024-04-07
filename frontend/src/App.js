@@ -5,8 +5,7 @@ import './index.css'
 
 function App() {
   const [articles, setArticles] = useState([]);
-
-  console.log(articles);
+  const [searchName, setSearchName] = useState('');
 
   const getArticles = async() => {
     try {
@@ -24,7 +23,11 @@ function App() {
   return (
     <>
       <div className="header">
-        <h1 style={{textAlign: "center", padding: 10}}>Kazakhstan News Feed</h1>
+        <h1>Новости Казахстана</h1>
+        <div class="form__group field">
+          <input class="form__field" placeholder="Поиск" name="Новости" id='name' value={searchName} onChange={e => setSearchName(e.target.value)} />
+          <label for="name" class="form__label">Поиск</label>
+        </div>
       </div>
       <div style={{display: "grid", gridTemplateColumns: "repeat(9, 1fr)"}}>
           {articles.map((item, i) => {
