@@ -6,55 +6,20 @@ import './index.css'
 function App() {
   const [articles, setArticles] = useState([]);
   const [searchName, setSearchName] = useState('');
+  const [ID, setID] = useState(0);
 
-  const getArticles = async() => {
+  const getArticles = async(id) => {
     try {
-      const response = await axios.get("http://localhost:3001/all");
+      const response = await axios.get(`http://localhost:3001/${id}`);
       setArticles(response.data);
     } catch (error) {
       console.log(error);
     }
   }
 
-  const getLife = async() => {
+  const seacrhArticles = async(id) => {
     try {
-      const response = await axios.get("http://localhost:3001/life");
-      setArticles(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const getSport = async() => {
-    try {
-      const response = await axios.get("http://localhost:3001/sport");
-      setArticles(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const getEdu = async() => {
-    try {
-      const response = await axios.get("http://localhost:3001/edu");
-      setArticles(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const getTravel = async() => {
-    try {
-      const response = await axios.get("http://localhost:3001/travel");
-      setArticles(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const seacrhArticles = async() => {
-    try {
-      const response = await axios.get(`http://localhost:3001/search/${searchName}`);
+      const response = await axios.get(`http://localhost:3001/search/${searchName}/${id}`);
 
       setArticles(response.data);
       console.log(articles);
@@ -64,7 +29,7 @@ function App() {
   }
 
   useEffect(() => {
-    getArticles();
+    getArticles(0);
   }, []);
 
   return (
@@ -75,24 +40,33 @@ function App() {
             <button class="button-4">Категории Новостей</button>
             <div class="dropdown-content">
               <button href="#" onClick={() => {
-                getLife();
+                getArticles(0);
+                setID(0);
+              }}>Все Новости</button>
+              <button href="#" onClick={() => {
+                getArticles(2);
+                setID(2);
               }}>Жизнь</button>
               <button href="#" onClick={() => {
-                getSport();
+                getArticles(1);
+                setID(1);
               }}>Спорт</button>
               <button href="#" onClick={() => {
-                getTravel();
+                getArticles(4);
+                setID(4);
               }}>Путешествия</button>
               <button href="#" onClick={() => {
-                getEdu();
+                getArticles(3);
+                setID(3);
               }}>Образование</button>
             </div>
           </div>
           <button class="button-4" onClick={() => {
-            getArticles();
-          }}>Все Новости</button>
+            getArticles(ID);
+            setSearchName('');
+          }}>Сбросить Поиск</button>
           <button class="button-4" onClick={() => {
-            seacrhArticles();
+            seacrhArticles(ID);
           }}>Поиск</button>
           <div class="form__group field">
             <input class="form__field" placeholder="Поиск" name="Новости" id='name' value={searchName} onChange={e => setSearchName(e.target.value)} />
