@@ -35,16 +35,16 @@ function App() {
     <>
       <div className="header">
         <h1>Новости Казахстана</h1>
-        <div class="form__group field">
-          <input class="form__field" placeholder="Поиск" name="Новости" id='name' value={searchName} onChange={e => setSearchName(e.target.value)} />
-          <label for="name" class="form__label">Поиск</label>
-        </div>
-        <button class="button-4" onClick={() => {
-          seacrhArticles();
-        }}>Поиск</button>
-        <button class="button-4" onClick={() => {
-          getArticles();
-        }}>Все Новости</button>
+          <button class="button-4" style={{marginLeft: "50%"}} onClick={() => {
+            seacrhArticles();
+          }}>Поиск</button>
+          <button class="button-4" onClick={() => {
+            getArticles();
+          }}>Все Новости</button>
+          <div class="form__group field">
+            <input class="form__field" placeholder="Поиск" name="Новости" id='name' value={searchName} onChange={e => setSearchName(e.target.value)} />
+            <label for="name" class="form__label">Поиск</label>
+          </div>
       </div>
       <div style={{display: "grid", gridTemplateColumns: "repeat(9, 1fr)"}}>
           {articles.map((item, i) => {
